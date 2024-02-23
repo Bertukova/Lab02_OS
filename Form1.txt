@@ -1,0 +1,44 @@
+using System.Windows.Forms;
+
+namespace Lab2_OS
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+        }
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            //string F1 = "hey";
+            //listBox1.Items.Add(F1.ToString());
+            DriveInfo[] drives = DriveInfo.GetDrives();
+            foreach (DriveInfo drive in drives)
+            {
+                listBox1.Items.Add($"Name: {drive.Name}");
+                listBox1.Items.Add($"Type: {drive.DriveType}");
+                if (drive.IsReady)
+                {
+                    listBox1.Items.Add($"Total space: {drive.TotalSize}");
+                    listBox1.Items.Add($"Free space: {drive.TotalFreeSpace}");
+                    listBox1.Items.Add($"Label: {drive.VolumeLabel}");
+                }
+                Console.WriteLine();
+            }
+        }
+    }
+}
